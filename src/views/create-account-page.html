@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário de Eventos</title>
+
+    <link rel="stylesheet" href="../../public/styles/create-account-page.css">
 </head>
 <body>
     <section>
@@ -15,30 +17,30 @@
 
         <form action="">
             <fieldset class="group-horizontal">
-                <div class="campo">
-                    <label for="name">Email</label>
+                <div class="campo campo-esquerda">
+                    <label for="name">Nome</label>
                     <input type="text" name="name" id="name" required>
                 </div>
 
                 <div class="campo">
-                    <label for="last-name">Senha</label>
+                    <label for="last-name">Sobrenome</label>
                     <input type="text" name="last-name" id="last-name" required>
                 </div>
             </fieldset>
 
-            <div class="group">
+            <div class="campo">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>
             </div>
 
             <fieldset class="group-horizontal">
-                <div class="campo">
+                <div class="campo campo-esquerda">
                     <label for="password">Senha</label>
                     <input type="password" name="password" id="password" required>
                 </div>
 
                 <div class="campo">
-                    <label for="password-confirm">Senha</label>
+                    <label for="password-confirm">Confirmar Senha</label>
                     <input type="password" name="password-confirm" id="password-confirm" required>
                 </div>
             </fieldset>
@@ -46,7 +48,7 @@
 
         <button>Criar</button>
 
-        <a href="">Já tem cadastro feito? Clique aqui!</a>
+        <a href="./login-page.html">Já tem cadastro feito? Clique aqui!</a>
     </section>
 </body>
 </html>

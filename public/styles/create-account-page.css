@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --light-background: #C3B1FB;
+    --dark-background: #7D52C5;
+    --light-color: #C3B1FB;
+    --dark-color: #7D52C5;
+    --warning-color: #FF6080;
+    --form-background: #DBC5E5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--light-background);
+    width: 100vw;
+    height: 100%;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.createAccountPage-title-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 204px;
+    margin-bottom: 42px;
+}
+
+.createAccountPage-title-div img{
+    width: 69px;
+    height: 76px;
+    margin-right: 15px;
+}
+
+.createAccountPage-title-div h1 {
+    width: 330px;
+    height: 126px;
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 63px;
+
+    color: var(--dark-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-horizontal {
+    border: none;
+    display: flex;
+    align-items: initial;
+    justify-content: center;
+}
+
+.group-horizontal .campo input {
+    width: 326.67px;
+    height: 40px;
+
+    background: var(--form-background);
+    box-shadow: 0px 4px 4px var(--dark-color);
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 22px;
+}
+
+.group-horizontal .campo-esquerda {
+    margin-right: 46px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    justify-content: center;
+}
+
+.campo label {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 12px;
+    
+    color: var(--dark-color);
+}
+
+.campo input {
+    width: 700px;
+    height: 40px;
+
+    background: var(--form-background);
+    box-shadow: 0px 4px 4px var(--dark-color);
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 22px;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 22px;
+
+    background: var(--dark-background);
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-family: "Roboto Mono", monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: var(--light-color);
+}
+
+a {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    
+    color: var(--dark-color);
+}
+
+
