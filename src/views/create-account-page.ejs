@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário de Eventos</title>
 
-    <link rel="stylesheet" href="../../public/styles/create-account-page.css">
+    <link rel="stylesheet" href="/styles/create-account-page.css">
 </head>
 <body>
     <section>
         <div class="createAccountPage-title-div">
-            <img src="../../public/assets/calendar.png" alt="Calendário">
+            <img src="/assets/calendar.png" alt="Calendário">
             <h1>Calendário de Eventos</h1>
         </div>
 
-        <form action="/create-account" method="POST">
+        <form name="registrationForm" action="/create-account" method="POST">
             <fieldset class="group-horizontal">
                 <div class="campo campo-esquerda">
                     <label for="name">Nome</label>
@@ -24,7 +24,7 @@
 
                 <div class="campo">
                     <label for="last-name">Sobrenome</label>
-                    <input type="text" name="last-name" id="last-name" required>
+                    <input type="text" name="lastName" id="last-name" required>
                 </div>
             </fieldset>
 
@@ -41,14 +41,16 @@
 
                 <div class="campo">
                     <label for="password-confirm">Confirmar Senha</label>
-                    <input type="password" name="password-confirm" id="password-confirm" required>
+                    <input type="password" name="passwordConfirm" id="password-confirm" required>
                 </div>
             </fieldset>
-        </form>
 
-        <button>Criar</button>
+            <input type="submit" value="Criar" onclick="return validate()" class="button">
+        </form>
 
         <a href="/login">Já tem cadastro feito? Clique aqui!</a>
     </section>
+
+    <script src="/scripts/form-validation.js"></script>
 </body>
 </html>
