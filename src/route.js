@@ -14,4 +14,8 @@ route.get('/create-account', (req, res) => {
     res.render('create-account-page.ejs')
 })
 
+route.get('/events', (req, res) => {
+    res.render('events-page.ejs')
+})
+
 module.exports = route;

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Eventos</title>
+
+    <link rel="stylesheet" href="/styles/events-page.css">
+</head>
+<body>
+    <section>
+        <header>
+            <div class="eventsPage-title-div">
+                <img src="/assets/calendar.png" alt="Calendário">
+                <h1>Calendário de Eventos</h1>
+            </div>
+
+            <button class="logout-btn">Sair</button>
+        </header>
+
+        <div class="row" id="eventList">
+            <h1>Lista de Eventos</h1>
+
+            <table v-if="hasEvents">
+                <thead>
+                    <tr>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ event.startDate }} {{ event.startTime }}</td>
+                        <td>{{ event.endDate }} {{ event.endTime }}</td>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>
+                            <button id="eventDelete"class="btn-small">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Nenhum evento criado</p>
+        </div>
+
+        <div class="row" id="eventEdit">
+            <h1>Adicione um Evento</h1>
+            <form>
+                <div class="row">
+                    <div>
+                        <label for="startDate" class="dateTime-label">Data de início</label>
+                        <input  type="date" name="startDate" class="dateTime-input" required>
+                        
+                    </div>
+                    <div>
+                        <label for="startTime" class="dateTime-label">Hora de início</label>
+                        <input type="time" name="startTime" class="startTime-input">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="endDate">Data do fim</label>
+                        <input type="date" name="endDate" class="dateTime-input">
+                    </div>
+                    <div>
+                        <label for="endTime">Hora do fim</label>
+                        <input type="time" name="endTime" class="startTime-input">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="title">Título</label>
+                        <input id="title" type="text" class="dateText">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="description">Description</label>
+                        <input id="description" type="text" class="dateText"> 
+                    </div>
+                </div>
+                <button id="eventEditSubmit" class="btn" type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <div id="deleteConfirm" ref="deleteConfirm" class="modal">
+            <div class="modal-content">
+                <h1>Confirmar exclusão</h1>
+                <p>Deletar {{ selectedEvent }}?</p>
+            </div>
+            <div class="modal-footer">
+                <button  class="modal-close">Ok</button>
+                <button class="modal-close">Cancel</button>
+            </div>
+        </div>
+      </div>
+    </section>
+</body>
+</html>
