@@ -19,17 +19,19 @@
             <button class="logout-btn">Sair</button>
         </header>
 
-        <div class="row" id="eventList">
+        <div class="showEvent" id="eventList">
             <h1>Lista de Eventos</h1>
 
-            <table v-if="hasEvents">
+            <span class="line"></span>
+
+            <table>
                 <thead>
                     <tr>
                         <th>Início</th>
                         <th>Fim</th>
                         <th>Título</th>
                         <th>Descrição</th>
-                        <th></th>
+                        <th class="th-btn"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,56 +40,58 @@
                         <td>{{ event.endDate }} {{ event.endTime }}</td>
                         <td>{{ event.title }}</td>
                         <td>{{ event.description }}</td>
-                        <td>
-                            <button id="eventDelete"class="btn-small">Delete</button>
+                        <td class="td-btn">
+                            <button id="eventDelete" class="btn-small">Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <p>Nenhum evento criado</p>
+
+            <span class="line bottom-line"></span>
+            <!--<p>Nenhum evento criado</p>-->
         </div>
 
-        <div class="row" id="eventEdit">
+        <div class="sendEvent" id="eventEdit">
             <h1>Adicione um Evento</h1>
             <form>
                 <div class="row">
-                    <div>
+                    <div class="campo">
                         <label for="startDate" class="dateTime-label">Data de início</label>
                         <input  type="date" name="startDate" class="dateTime-input" required>
                         
                     </div>
-                    <div>
+                    <div class="campo">
                         <label for="startTime" class="dateTime-label">Hora de início</label>
                         <input type="time" name="startTime" class="startTime-input">
                     </div>
                 </div>
                 <div class="row">
-                    <div>
+                    <div class="campo">
                         <label for="endDate">Data do fim</label>
                         <input type="date" name="endDate" class="dateTime-input">
                     </div>
-                    <div>
+                    <div class="campo">
                         <label for="endTime">Hora do fim</label>
                         <input type="time" name="endTime" class="startTime-input">
                     </div>
                 </div>
                 <div class="row">
-                    <div>
+                    <div class="campo">
                         <label for="title">Título</label>
                         <input id="title" type="text" class="dateText">
                     </div>
                 </div>
                 <div class="row">
-                    <div>
+                    <div class="campo">
                         <label for="description">Description</label>
                         <input id="description" type="text" class="dateText"> 
                     </div>
                 </div>
-                <button id="eventEditSubmit" class="btn" type="submit">Enviar</button>
+                <button id="eventEditSubmit" class="btn-small" type="submit">Enviar</button>
             </form>
         </div>
 
-        <div id="deleteConfirm" ref="deleteConfirm" class="modal">
+       <!-- <div id="deleteConfirm" ref="deleteConfirm" class="modal">
             <div class="modal-content">
                 <h1>Confirmar exclusão</h1>
                 <p>Deletar {{ selectedEvent }}?</p>
@@ -97,7 +101,7 @@
                 <button class="modal-close">Cancel</button>
             </div>
         </div>
-      </div>
+      </div> -->
     </section>
 </body>
 </html>
