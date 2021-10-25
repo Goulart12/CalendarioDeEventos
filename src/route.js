@@ -1,7 +1,8 @@
 const express = require('express');
 const route = express.Router();
-const documentStore = require('./db/config');
+const Database = require("../src/db/config")
 const bcrypt = require('bcrypt');
+
 
 route.get('/', (req, res) => {
     res.render('index.ejs')
@@ -23,7 +24,6 @@ route.post('/login', (req, res, next) => {
 })
 
 route.post('/create-account', (req, res) => {
-
     const {name, lastName, email, password, passwordConfirm} = req.body;
     let errors = [];
     console.log(' Name ' + name+ ' LastName ' + lastName+ ' email :' + email+ ' pass:' + password);
@@ -34,7 +34,7 @@ route.post('/create-account', (req, res) => {
     if(password !== passwordConfirm) {
         errors.push({msg : "As senhas não são iguais"});
     }
-
+    
     //check if password is more than 6 characters
     if(password.length < 6 ) {
         errors.push({msg : 'A senha deve ter pelo menos 6 caracteres'})
@@ -49,36 +49,43 @@ route.post('/create-account', (req, res) => {
         passwordConfirm : passwordConfirm})
     } else {
         //validation passed
-            const session = documentStore.openSession();
-            const newUser = new User();
-            newUser.name = name;
-            newUser.lastName = lastName;
-            newUser.email = email;
-            newUser.password = password;
-
-            
-            session.documentStore(newUser);
-
-            session.saveChanges();
-
+            // async create(req, res) {
+            //     const db = await Database();
+    
+            //     await db.run(`INSERT INTO users(
+            //         name,
+            //         lastName,
+            //         email,
+            //         password
+            //     )VAlUES(
+            //         "${name}",
+            //         "${lastName}",
+            //         "${email}",
+            //         "${password}"
+            //     )`);
+    
+            //     res.redirect('/login');
+            // };    
+    
             bcrypt.genSalt(10,(err,salt)=> 
-            bcrypt.hash(newUser.password,salt,
+            bcrypt.hash(users.password,salt,
                 (err,hash)=> {
                     if(err) throw err;
                         //save pass to hash
-                        newUser.password = hash;
+                        users.password = hash;
                     //save user
-                    newUser.save()
+                    users.save()
                     .then((value)=>{
                         console.log(value)
                         req.flash('success_msg','You have now registered!');
                         res.redirect('/login');
                     })
                     .catch(value=> console.log(value));
-                      
+                        
                 }));
         
-    }   
+    }  
+    
 });
 
 

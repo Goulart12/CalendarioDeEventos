@@ -53,38 +53,38 @@
 
         <div class="sendEvent" id="eventEdit">
             <h1>Adicione um Evento</h1>
-            <form>
+            <form action="/events" method="POST">
                 <div class="row">
                     <div class="campo">
                         <label for="startDate" class="dateTime-label">Data de início</label>
-                        <input  type="date" name="startDate" class="dateTime-input" required>
+                        <input  type="date" name="startDate" class="dateTime-input" id="datefield" required>
                         
                     </div>
                     <div class="campo">
                         <label for="startTime" class="dateTime-label">Hora de início</label>
-                        <input type="time" name="startTime" class="startTime-input">
+                        <input type="time" name="startTime" class="startTime-input" id="hourfield" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="campo">
                         <label for="endDate">Data do fim</label>
-                        <input type="date" name="endDate" class="dateTime-input">
+                        <input type="date" name="endDate" class="dateTime-input" id="datefieldEnd" required>
                     </div>
                     <div class="campo">
                         <label for="endTime">Hora do fim</label>
-                        <input type="time" name="endTime" class="startTime-input">
+                        <input type="time" name="endTime" class="startTime-input" id="hourfieldEnd" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="campo">
                         <label for="title">Título</label>
-                        <input id="title" type="text" class="dateText">
+                        <input id="title" type="text" class="dateText" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="campo">
                         <label for="description">Description</label>
-                        <input id="description" type="text" class="dateText"> 
+                        <input id="description" type="text" class="dateText" required> 
                     </div>
                 </div>
                 <button id="eventEditSubmit" class="btn-small" type="submit">Enviar</button>
@@ -103,5 +103,39 @@
         </div>
       </div> -->
     </section>
+
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        var hour = today.getHours();
+
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+            
+        today = yyyy + '-' + mm + '-' + dd;
+        todayHour = hour;
+        document.getElementById("datefield").setAttribute("min", today);
+        document.getElementById("datefieldEnd").setAttribute("min", today);
+
+        function addZero(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
+        }
+
+        const d = new Date();
+        let h = addZero(d.getHours());
+        let m = addZero(d.getMinutes());
+        let s = addZero(d.getSeconds());
+        let time = h + ":" + m + ":" + s;
+        document.getElementById("hourfield").setAttribute("min", time);
+        document.getElementById("hourfieldEnd").setAttribute("min", time);
+    </script>
 </body>
 </html>

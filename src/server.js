@@ -2,7 +2,6 @@ const express = require('express');
 const route = require('./route')
 const path = require('path')
 
-
 const session = require('express-session');
 const server = express()
 

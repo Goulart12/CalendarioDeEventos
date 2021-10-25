@@ -1,23 +1,9 @@
-const { DocumentStore } = require('ravendb');
-const { CreateDatabaseOperation } = require('ravendb');
+const sqlite3 = require("sqlite3")
+const { open } = require("sqlite")
 
-const serverUrl = 'http://127.0.0.1:1000';
-const databaseName = 'CalendárioDeEventos';
-
-const documentStore = new DocumentStore([serverUrl], databaseName);
-
-documentStore.initialize();
-
-
-// try {
-//     const databaseRecord = { databaseName };
-//     const createDatabaseOperation = new CreateDatabaseOperation(databaseRecord);
-
-//     documentStore.maintenance.server.send(createDatabaseOperation);
-// } catch (err) {
-//     if (err.name === 'Database Already Exists') {
-//     }
-// }
-
-module.exports = { documentStore };
+module.exports = () => 
+    open({
+        filename: './src/db/calendar.sqlite',
+        driver: sqlite3.Database,
+    })
                                                                                                 
