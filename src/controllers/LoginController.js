@@ -1,5 +1,5 @@
-import { documentStore } from "../db/config";
+// const documentStore = require('../config/database');
 
-const session = documentStore.openSession('CalendárioDeEventos');
+// const session = documentStore.openSession('CalendárioDeEventos');
 
-await session.saveChanges();
+// await session.saveChanges();

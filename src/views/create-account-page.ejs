@@ -19,29 +19,29 @@
             <fieldset class="group-horizontal">
                 <div class="campo campo-esquerda">
                     <label for="name">Nome</label>
-                    <input type="text" name="name" id="name" required>
+                    <input type="text" name="name" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required>
                 </div>
 
                 <div class="campo">
                     <label for="last-name">Sobrenome</label>
-                    <input type="text" name="lastName" id="last-name" required>
+                    <input type="text" name="lastName" id="lastName"  value="<%= typeof lastName != 'undefined' ? lastName : '' %>"required>
                 </div>
             </fieldset>
 
             <div class="campo">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" required>
             </div>
 
             <fieldset class="group-horizontal">
                 <div class="campo campo-esquerda">
                     <label for="password">Senha</label>
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required>
                 </div>
 
                 <div class="campo">
                     <label for="password-confirm">Confirmar Senha</label>
-                    <input type="password" name="passwordConfirm" id="password-confirm" required>
+                    <input type="password" name="passwordConfirm" id="password-confirm" value="<%= typeof passwordConfirm != 'undefined' ? passwordConfirm : '' %>" required>
                 </div>
             </fieldset>
 
