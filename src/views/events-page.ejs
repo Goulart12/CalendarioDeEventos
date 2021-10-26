@@ -22,34 +22,51 @@
         <div class="showEvent" id="eventList">
             <h1>Lista de Eventos de <%= user.name %></h1>
 
-            <% if(thereIsEvents) { %>
-                <%- include('parts/events-table') %>
-            <% } %>
+            <span class="line"></span>
+
+            <table>
+                <thead>
+                    <!-- <tr>
+                        <th>Data de início</th>
+                        <th>Hora de início</th>
+                        <th>Data do fim</th>
+                        <th>Hora do fim</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                    </tr> -->
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+
+            <span class="line bottom-line"></span>
+
             <p class="noEventsMessage">Nenhum evento criado</p>
         </div>
 
         <div class="sendEvent" id="eventEdit">
             <h1>Adicione um Evento</h1>
-            <form action="/events" method="POST">
+            <form action="javascript:;">
                 <div class="row">
                     <div class="campo">
                         <label for="startDate" class="dateTime-label">Data de início</label>
-                        <input  type="date" name="startDate" class="dateTime-input" id="datefield" required>
+                        <input  type="date" name="startDate" class="dateTime-input" id="startDate" required>
                         
                     </div>
                     <div class="campo">
                         <label for="startTime" class="dateTime-label">Hora de início</label>
-                        <input type="time" name="startTime" class="startTime-input" id="hourfield" required>
+                        <input type="time" name="startTime" class="startTime-input" id="startTime" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="campo">
                         <label for="endDate">Data do fim</label>
-                        <input type="date" name="endDate" class="dateTime-input" id="datefieldEnd" required>
+                        <input type="date" name="endDate" class="dateTime-input" id="endDate" required>
                     </div>
                     <div class="campo">
                         <label for="endTime">Hora do fim</label>
-                        <input type="time" name="endTime" class="startTime-input" id="hourfieldEnd" required>
+                        <input type="time" name="endTime" class="startTime-input" id="endTime" required>
                     </div>
                 </div>
                 <div class="row">
@@ -64,10 +81,13 @@
                         <input id="description" name="description" type="text" class="dateText" required> 
                     </div>
                 </div>
-                <button id="eventEditSubmit" class="btn-small" type="submit">Enviar</button>
+                <button id="eventEditSubmit" class="btn-small" type="submit" onclick="createItem()">Enviar</button>
             </form>
         </div>
 
+        <button id="eventDelete" class="btn-small" onclick="deleteItem()">Delete</button>
+        <button id="eventRead" class="btn-small" onclick="readItem()">Read</button>
+        <button id="eventEdit" class="btn-small" onclick="updateItem()">Edit</button>
        <!-- <div id="deleteConfirm" ref="deleteConfirm" class="modal">
             <div class="modal-content">
                 <h1>Confirmar exclusão</h1>
@@ -84,7 +104,7 @@
     <script>
         var today = new Date();
         var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
+        var mm = today.getMonth() + 1; 
         var yyyy = today.getFullYear();
         var hour = today.getHours();
 
@@ -98,8 +118,8 @@
             
         today = yyyy + '-' + mm + '-' + dd;
         todayHour = hour;
-        document.getElementById("datefield").setAttribute("min", today);
-        document.getElementById("datefieldEnd").setAttribute("min", today);
+        document.getElementById("startDate").setAttribute("min", today);
+        document.getElementById("endDate").setAttribute("min", today);
 
         function addZero(i) {
             if (i < 10) {i = "0" + i}
@@ -110,8 +130,165 @@
         let h = addZero(d.getHours());
         let m = addZero(d.getMinutes());
         let time = h + ":" + m;
-        document.getElementById("hourfield").setAttribute("min", time);
-        document.getElementById("hourfieldEnd").setAttribute("min", time);
+        document.getElementById("startTime").setAttribute("min", time);
+        document.getElementById("endTime").setAttribute("min", time);
+
+        const form = document.querySelector("form");
+        const table = document.querySelector("table");
+        const thead = document.querySelector("thead");
+        const tbody = document.querySelector("tbody");
+        const eventos = [];
+
+        const tableHead = data => {
+            let ObjectKeys;
+            for (let items of data) {
+                ObjectKeys = Object.keys(items);
+            }
+            let row = document.createElement("tr");
+            for (let key of ObjectKeys) {
+                let heading = document.createElement("th");
+                heading.innerText = key;
+                row.appendChild(heading);
+            }
+            thead.appendChild(row);
+            table.appendChild(thead);
+            };
+
+        const tableBody = data => {
+            for (let items of data) {
+                let ObjectKeys = Object.values(items);
+                let row = document.createElement("tr");
+                for (let values of ObjectKeys) {
+                let cell = document.createElement("td");
+                cell.innerText = values;
+                row.appendChild(cell);
+                }
+                tbody.appendChild(row);
+            }
+            table.appendChild(tbody);
+            console.log(table);
+        };
+
+        const createItem = () => {
+            const startDate = document.querySelector('#startDate').value;
+            const startTime = document.querySelector('#startTime').value;
+            const endDate = document.querySelector('#endDate').value;
+            const endTime = document.querySelector('#endTime').value;
+            const title = document.querySelector('#title').value;
+            const description = document.querySelector('#description').value;
+
+            const formData = {
+                startDate,
+                startTime,
+                endDate,
+                endTime,
+                title,
+                description
+            };
+
+            eventos.push(formData);
+
+            try {
+                if(localStorage.getItem("eventList") === null) {
+                    localStorage.setItem("eventList", JSON.stringify(eventos));
+                } else {
+                    let storage = JSON.parse(localStorage.getItem("eventList"));
+                    storage.push(formData);
+                    localStorage.setItem("eventList", JSON.stringify(storage));
+                    console.log(storage);
+                }
+            } catch (err) {
+                console.log(err)
+            }
+            
+        }
+
+        const readItem = () => {
+            const storage = JSON.parse(localStorage.getItem("eventList"));
+            if (storage && storage.length >= 1) {
+                if (table.rows.length < 1) {
+                tableBody(storage);
+                tableHead(storage);
+                }
+            } else {
+                return;
+            }
+        };
+
+        table.onclick = () => {
+            let row = table.rows;
+            for (let i = 0; i < row.length; i++) {
+                row[i].addEventListener("click", activateItem);
+             }
+        };
+
+        function activateItem() {
+            rowIndex = this.rowIndex;
+            let startDate = document.querySelector('#startDate');
+            let startTime = document.querySelector('#startTime');
+            let endDate = document.querySelector('#endDate');
+            let endTime = document.querySelector('#endTime');
+            let title = document.querySelector('#title');
+            let description = document.querySelector('#description');
+
+            startDate.value = this.cells[0].innerText;
+            startTime.value = this.cells[1].innerText;
+            endDate.value = this.cells[2].innerText;
+            endTime.value = this.cells[3].innerText;
+            title.value = this.cells[4].innerText;
+            description.value = this.cells[5].innerText;
+    }
+
+        const updateItem = () => {
+            const storage = JSON.parse(localStorage.getItem("eventList"));
+            const startDate = document.querySelector('#startDate').value;
+            const startTime = document.querySelector('#startTime').value;
+            const endDate = document.querySelector('#endDate').value;
+            const endTime = document.querySelector('#endTime').value;
+            const title = document.querySelector('#title').value;
+            const description = document.querySelector('#description').value;
+            let tableRowIndex = rowIndex - 1;
+  
+    
+            let confirm = window.confirm("Tem certeza que gostaria de mudar esse item?");
+            if (confirm === true) {
+            tableRowIndex &&
+                storage.splice(tableRowIndex, 1, {
+                    startDate,
+                    startTime,
+                    endDate,
+                    endTime,
+                    title,
+                    description
+                });
+            localStorage.setItem("eventList", JSON.stringify(storage));
+            console.log(storage);
+            window.alert("Item atualizado");
+            window.location.reload();
+            } else {
+            return;
+            }
+        };
+
+        const deleteItem = () => {
+            let confirm = window.confirm("Tem certeza que quer deletar esse item?");
+            if (confirm === true) {
+                const storage = JSON.parse(localStorage.getItem("eventList"));
+                let tableRowIndex = rowIndex - 1;
+                if (tableRowIndex) {
+                tableRowIndex && storage.splice(tableRowIndex, 1);
+                localStorage.setItem("eventList", JSON.stringify(storage));
+                window.location.reload();
+                console.log(storage);
+                } else {
+                return;
+                }
+            } else {
+                return false;
+            }
+        };
+
+
     </script>
 </body>
 </html>
