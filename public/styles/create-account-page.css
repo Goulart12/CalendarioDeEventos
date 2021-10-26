@@ -141,3 +141,41 @@ a {
 }
 
 
+@media(max-width: 800px){
+
+    .createAccountPage-title-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 144px;
+        margin-bottom: 42px;
+    }
+
+    .group-horizontal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .group-horizontal .campo-esquerda {
+        margin-right: 0;
+    }
+
+    .group-horizontal .campo input {
+        width: 383.73px;
+    }
+
+    .campo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .campo input {
+        width: 383.73px;
+        
+    }
+
+}
