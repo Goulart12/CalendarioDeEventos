@@ -270,3 +270,98 @@ header {
     color: var(--light-color);
     cursor: pointer;
 }
+
+@media(max-width: 800px) {
+    .eventsPage-title-div {
+        margin-right: 0px;
+    }
+
+
+    .eventsPage-title-div img{
+        width: 49px;
+        height: 56px;
+        margin-right: 15px;
+    }
+
+    .eventsPage-title-div h1 {
+        width: 230px;
+        height: 94px;
+        font-family: Roboto Mono;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 47px;
+
+        color: var(--dark-color);
+    }
+
+    .showEvent {
+        width: 383.73px;    
+    }
+
+    .showEvent table {
+        width: 383.73px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: initial;
+        align-items: initial;
+    }
+
+    .showEvent tr {
+        display: flex;
+        flex-direction: column;
+    }
+    
+
+    .showEvent span {
+        width: 383.73px;
+    }
+    
+    .showEvent h1 {
+        font-family: 'Roboto Mono', monospace;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 27px;
+        
+    
+        color: var(--dark-color);
+    }
+
+    .sendEvent h1 {
+        font-family: 'Roboto Mono', monospace;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 27px;
+        margin-top: 120px;
+        margin-bottom: 20px;
+    
+        color: var(--dark-color);
+    }
+
+    .sendEvent .row {
+        width: 383.73px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .dateTime-input,
+    .startTime-input {
+        width: 383.73px;
+    }
+
+    .dateTime-input {
+        margin-right: 0;
+    }
+
+    .dateText {
+        width: 383.73px;
+    }
+
+    .sendEvent .btn-small {
+        margin-bottom: 20px;
+    }
+}

@@ -22,10 +22,33 @@
         <div class="showEvent" id="eventList">
             <h1>Lista de Eventos de <%= user.name %></h1>
 
-            <% if(thereIsEvents) { %>
-                <%- include('parts/events-table') %>
-            <% } %>
-            <p class="noEventsMessage">Nenhum evento criado</p>
+            <span class="line"></span>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th class="th-btn"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> Algum valor</td>
+                        <td> Algum valor</td>
+                        <td>Algum valor</td>
+                        <td>Algum valor</td>
+                        <td class="td-btn">
+                            <button id="eventDelete" class="btn-small">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span class="line bottom-line"></span>
+        
         </div>
 
         <div class="sendEvent" id="eventEdit">
