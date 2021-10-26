@@ -73,6 +73,10 @@ header {
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     color: var(--light-color);
 }
@@ -83,6 +87,17 @@ header {
 
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.showEvent p {
+    font-family: 'Roboto Mono', monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 47px;
+    margin-top: 20px;
+
+    color: var(--dark-color);
 }
 
 .showEvent span {

@@ -16,39 +16,16 @@
                 <h1>Calendário de Eventos</h1>
             </div>
 
-            <button class="logout-btn">Sair</button>
+            <a href="/logout" class="logout-btn">Sair</a>
         </header>
 
         <div class="showEvent" id="eventList">
-            <h1>Lista de Eventos</h1>
+            <h1>Lista de Eventos de <%= user.name %></h1>
 
-            <span class="line"></span>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Início</th>
-                        <th>Fim</th>
-                        <th>Título</th>
-                        <th>Descrição</th>
-                        <th class="th-btn"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ event.startDate }} {{ event.startTime }}</td>
-                        <td>{{ event.endDate }} {{ event.endTime }}</td>
-                        <td>{{ event.title }}</td>
-                        <td>{{ event.description }}</td>
-                        <td class="td-btn">
-                            <button id="eventDelete" class="btn-small">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <span class="line bottom-line"></span>
-            <!--<p>Nenhum evento criado</p>-->
+            <% if(thereIsEvents) { %>
+                <%- include('parts/events-table') %>
+            <% } %>
+            <p class="noEventsMessage">Nenhum evento criado</p>
         </div>
 
         <div class="sendEvent" id="eventEdit">
@@ -78,13 +55,13 @@
                 <div class="row">
                     <div class="campo">
                         <label for="title">Título</label>
-                        <input id="title" type="text" class="dateText" required>
+                        <input id="title" name="title" type="text" class="dateText" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="campo">
                         <label for="description">Description</label>
-                        <input id="description" type="text" class="dateText" required> 
+                        <input id="description" name="description" type="text" class="dateText" required> 
                     </div>
                 </div>
                 <button id="eventEditSubmit" class="btn-small" type="submit">Enviar</button>
@@ -132,8 +109,7 @@
         const d = new Date();
         let h = addZero(d.getHours());
         let m = addZero(d.getMinutes());
-        let s = addZero(d.getSeconds());
-        let time = h + ":" + m + ":" + s;
+        let time = h + ":" + m;
         document.getElementById("hourfield").setAttribute("min", time);
         document.getElementById("hourfieldEnd").setAttribute("min", time);
     </script>

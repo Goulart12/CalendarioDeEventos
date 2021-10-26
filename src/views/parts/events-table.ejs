@@ -1,0 +1,26 @@
+<span class="line"></span>
+
+<table>
+    <thead>
+        <tr>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th class="th-btn"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= event.startDate %>  <%= event.startTime %></td>
+            <td><%= event.endDate %>  <%= event.endTime %></td>
+            <td><%= event.title %></td>
+            <td><%= event.description %></td>
+            <td class="td-btn">
+                <button id="eventDelete" class="btn-small">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<span class="line bottom-line"></span>

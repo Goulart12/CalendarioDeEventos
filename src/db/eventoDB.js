@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
 const UserSchema  = new mongoose.Schema({
-  name :{
+  startDate :{
       type  : String,
       required : true
   } ,
-  lastName :{
+  startTime :{
     type  : String,
     required : true
 } ,
-  email :{
+  endDate :{
     type  : String,
     required : true
 } ,
-password :{
+  endTime :{
     type  : String,
     required : true
 } ,
-date :{
-    type : Date,
-    default : Date.now
-}
+title :{
+    type  : String,
+    required : true
+} ,
+description :{
+    type  : String,
+    required : true
+} 
 });
-const User= mongoose.model('User',UserSchema);
+const Event = mongoose.model('Event',UserSchema);
 
-module.exports = User;
+module.exports = Event;

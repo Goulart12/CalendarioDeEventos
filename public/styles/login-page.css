@@ -28,6 +28,13 @@ section {
     justify-content: center;
 }
 
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .loginPage-title-div {
     display: flex;
     justify-content: center;
@@ -104,7 +111,7 @@ section {
     color: var(--dark-color);
 }
 
-button {
+.btn-submit {
     width: 100px;
     height: 40px;
     margin-bottom: 22px;
