@@ -63,14 +63,12 @@ route.post('/events', (req,res) => {
                    console.log(value)
                    //req.flash('success_msg','You have now registered!');
                    res.redirect('/events');
+                   let thereIsEvents;
+                   return thereIsEvents = true;
                })
                .catch(value=> console.log(value)); 
                
-               
-               if(newEvent.value = 1) {
-                let thereIsEvents;
-                return thereIsEvents = true;
-                }
+                
         })
     }
 });
@@ -112,9 +110,9 @@ route.post('/create-account', (req, res) => {
        User.findOne({email : email}).exec((err,user)=>{
         console.log(user);   
         if(user) {
-            errors.push({msg: 'email already registered'});
+            errors.push({msg: 'Email já registrado'});
             res.render('create-account-page',{errors,name,lastName,email,password,passwordConfirm})  
-            console.log('User already exist');
+            console.log('Usuário já existe');
            } else {
             const newUser = new User({
                 name : name,
