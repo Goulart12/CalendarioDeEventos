@@ -1,1 +1,1 @@
-## Estudei muita coisa, tentei muita coisa e não funcionou 🙁##
+## Estudei muita coisa, tentei muita coisa e não funcionou 🙁
