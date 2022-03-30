@@ -1,18 +1,20 @@
 const express = require('express');
-const route = require('./route')
-const path = require('path')
+const route = require('./route');
+const path = require('path');
+require('dotenv').config();
 const mongoose = require('mongoose');
-
-
 const session = require('express-session');
 const server = express()
 const passport = require('passport');
+const connectDB = require('./db/connection');
 
 require('../src/db/passport')(passport)
 
-mongoose.connect('mongodb://localhost/test',{useNewUrlParser: true, useUnifiedTopology : true})
-.then(() => console.log('connected,,'))
-.catch((err)=> console.log(err));
+connectDB();
+
+// mongoose.connect('mongodb://localhost/test',{useNewUrlParser: true, useUnifiedTopology : true})
+// .then(() => console.log('connected,,'))
+// .catch((err)=> console.log(err));
 
 server.set('view engine', 'ejs')
 
